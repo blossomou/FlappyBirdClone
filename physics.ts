@@ -20,6 +20,11 @@ const Physics= (entities: { physics: { engine: any; }; }, {touches, time, dispat
     Matter.Engine.update(engine, time.delta);
 
     for(let i = 1; i <= 2; i++){
+        if(entities[`ObstacleTop${i}`].body.bounds.max.x <= 50 && !entities[`ObstacleTop${i}`].point){
+            entities[`ObstacleTop${i}`].point = true;
+            dispatch({type: 'new_point'})
+        }
+
         if(entities[`ObstacleTop${i}`].body.bounds.max.x <= 0 ){
             const pipeSizePos = getPipeSizePosPair(windowWidth * 0.9);
             Matter.Body.setPosition(entities[`ObstacleTop${i}`].body, pipeSizePos.pipeTop.pos)
