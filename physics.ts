@@ -25,11 +25,13 @@ const Physics= (entities: { physics: { engine: any; }; }, {touches, time, dispat
             Matter.Body.setPosition(entities[`ObstacleTop${i}`].body, pipeSizePos.pipeTop.pos)
             Matter.Body.setPosition(entities[`ObstacleBottom${i}`].body, pipeSizePos.pipeBottom.pos)
         }
-        Matter.Body.translate(entities[`ObstacleTrop${i}`].body, {x: -3, y:0})
+        Matter.Body.translate(entities[`ObstacleTop${i}`].body, {x: -3, y:0})
         Matter.Body.translate(entities[`ObstacleBottom${i}`].body, {x: -3, y:0})
     }
 
-
+    Matter.Events.on(engine, 'collisionStart', (event) =>{
+        dispatch({type: 'game_over'})
+    } )
     return entities;
 
 }
