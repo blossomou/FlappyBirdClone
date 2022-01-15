@@ -13,7 +13,7 @@ const Physics= (entities: { physics: { engine: any; }; }, {touches, time, dispat
     touches.filter(t => t.type === 'press').forEach(t => {
         Matter.Body.setVelocity(entities.Bird.body, {
             x: 0,
-            y: -8
+            y: -4
         })
     })
     
@@ -29,6 +29,8 @@ const Physics= (entities: { physics: { engine: any; }; }, {touches, time, dispat
             const pipeSizePos = getPipeSizePosPair(windowWidth * 0.9);
             Matter.Body.setPosition(entities[`ObstacleTop${i}`].body, pipeSizePos.pipeTop.pos)
             Matter.Body.setPosition(entities[`ObstacleBottom${i}`].body, pipeSizePos.pipeBottom.pos)
+            entities[`ObstacleTop${i}`].point = false;
+
         }
         Matter.Body.translate(entities[`ObstacleTop${i}`].body, {x: -3, y:0})
         Matter.Body.translate(entities[`ObstacleBottom${i}`].body, {x: -3, y:0})
