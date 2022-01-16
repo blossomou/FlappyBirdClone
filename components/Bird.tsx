@@ -27,7 +27,7 @@ const Bird = (props : any) => {
             //     borderWidth: 1, borderColor: color, borderStyle: 'solid', 
             //     position: 'absolute', left: xBody, top: yBody, width: widthBody, height: heightBody}}
             // />
-            <Image source={image} style={{ position: 'absolute', left: xBody, top: yBody, width: widthBody, height: heightBody, transform:[{rotateZ: rotation}]}}
+            <Image source={image} resizeMode="contain" style={{ position: 'absolute', left: xBody, top: yBody, width: widthBody, height: heightBody, transform:[{rotateZ: rotation}]}}
             />
             
             )
