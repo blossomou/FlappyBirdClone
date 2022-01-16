@@ -2,11 +2,6 @@ import { Bodies, World } from 'matter-js'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-// interface pos {
-//     x: number,
-//     y: number;
-// }
-
 const Floor = (props : any) => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x;
     const heightBody = props.body.bounds.max.y - props.body.bounds.min.y;

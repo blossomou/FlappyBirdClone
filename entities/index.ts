@@ -9,15 +9,13 @@ import { getPipeSizePosPair } from '../utils/random';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-
  const restart = () => {
     let engine = Matter.Engine.create({enableSleeping: false, gravity: {y:0.4}})
     let world = engine.world;
     const pipeSizePosA = getPipeSizePosPair()
     const pipeSizePosB = getPipeSizePosPair( windowWidth * 0.9)
 
-    return{
+    return {
         physics: {engine, world},
         
         Bird: Bird(world, 'green', {x: 50, y: 300}, {height: 40, width:40}),

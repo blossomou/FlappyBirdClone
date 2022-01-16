@@ -22,7 +22,7 @@ export default function App() {
         systems={[Physics]}
         entities={entities()}
         running={running}
-        onEvent={(e) => {
+        onEvent={(e: {type:string}) => {
           switch(e.type){
             case 'game_over':
               setRunning(false);

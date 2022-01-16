@@ -7,11 +7,24 @@ import { Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Physics= (entities: { physics: { engine: any; }; }, {touches, time, dispatch}: any) =>{
-    let engine = entities.physics.engine;
+interface EntitiesProps{
+     [x: string]:{point: boolean, body: Matter.Body, engine: Matter.Engine }
+}
+interface TouchesTimeDispatchProps{
+    touches:{
+        type:string}[], 
+        time: {
+            delta: number
+        }, 
+        dispatch:({type}: {type: string}) => void
+}
 
-    touches.filter(t => t.type === 'press').forEach(t => {
-        Matter.Body.setVelocity(entities.Bird.body, {
+const Physics= (entities: EntitiesProps, {touches, time, dispatch}: TouchesTimeDispatchProps) =>{
+    
+    let engine = entities['physics'].engine;
+
+    touches.filter((t) => t.type === 'press').forEach((t) => {
+        Matter.Body.setVelocity(entities['Bird'].body, {
             x: 0,
             y: -4
         })
