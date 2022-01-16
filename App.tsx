@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
 import entities from './entities';
 import Physics from './physics';
 
+const image = require("./assets/background.png");
 
 export default function App() {
   const [running, setRunning] = useState(false);
@@ -14,9 +15,13 @@ export default function App() {
   useEffect(() => {
     setRunning(false);
   },[])
+
   return (
     <View style={{flex: 1}}>
+     
+     <ImageBackground source={image}style={styles.image}>
       <Text style={{textAlign:'center', fontSize: 40, fontWeight: 'bold', margin: 20}}>{currentPoints}</Text>
+      
       <GameEngine 
         ref={(ref) => {setGameEngine(ref)}}
         systems={[Physics]}
@@ -28,13 +33,13 @@ export default function App() {
               setRunning(false);
               gameEngine.stop()
               break;
-            case 'new_point':
-              setCurrentPoints(currentPoints + 1)
-              break;
-          }
-        }}
-        style={{position: 'absolute',top: 0, left: 0, right: 0, bottom: 0}}
-      >
+              case 'new_point':
+                setCurrentPoints(currentPoints + 1)
+                break;
+              }
+            }}
+            style={{position: 'absolute',top: 0, left: 0, right: 0, bottom: 0}}
+            >
 
       <StatusBar style="auto" hidden={true} />
       </GameEngine>
@@ -47,12 +52,22 @@ export default function App() {
               setRunning(true)
               gameEngine.swap(entities())
             }}>
+              
               <Text style={{fontWeight: 'bold', color: 'white', fontSize: 30}}>
                 START GAME
               </Text>
 
             </TouchableOpacity>
         </View>:null}
+              </ImageBackground>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: "100%",
+  
+  },
+  
+});
